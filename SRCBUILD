@@ -1,0 +1,19 @@
+DEPENDS ::
+    attr-git
+    git-git
+    glibc-git
+
+PREPARE ::
+    check DEPENDS
+    fetch https://git.savannah.gnu.org/git/acl.git
+
+BUILD ::
+    goto acl
+        ./autogen.sh
+        ./configure --prefix="/usr"
+        make
+        make check
+
+INSTALL ::
+    goto acl
+        make DESTDIR="${PWD}" install
